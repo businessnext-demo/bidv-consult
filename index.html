@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIDV - Request Consultation</title>
+    <style>
+        :root {
+            --primary-color: #00524E;
+            --secondary-color: #DAA520;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            background-color: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .logo {
+            height: 48px;
+        }
+        
+        .language-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .lang-label {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        main {
+            flex: 1;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            width: 100%;
+        }
+        
+        .card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        label {
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+        
+        input {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0, 55, 123, 0.2);
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #DAA520;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 600px) {
+            header {
+                padding: 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="BIDV LOGO.png" alt="BIDV Logo" class="logo" id="bidv-logo">
+            <div class="language-toggle">
+                <span class="lang-label" id="en-label">EN</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="lang-toggle">
+                    <span class="slider"></span>
+                </label>
+                <span class="lang-label" id="vi-label">VI</span>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="card">
+            <h1 id="page-title">Request Consultation</h1>
+            <form id="consultation-form">
+                <div class="form-group">
+                    <label for="name" id="name-label">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="mobile" id="mobile-label">Mobile Number</label>
+                    <input type="tel" id="mobile" name="mobile" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" id="email-label">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <button type="submit" id="submit-btn">Submit Request</button>
+            </form>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="#" id="about-link">About BIDV</a>
+                <a href="#" id="privacy-link">Privacy Policy</a>
+                <a href="#" id="contact-link">Contact Us</a>
+            </div>
+            <div class="copyright" id="copyright">© 2025 BIDV. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                pageTitle: "Request Consultation",
+                nameLabel: "Full Name",
+                mobileLabel: "Mobile Number",
+                emailLabel: "Email Address",
+                submitBtn: "Submit Request",
+                aboutLink: "About BIDV",
+                privacyLink: "Privacy Policy",
+                contactLink: "Contact Us",
+                copyright: "© 2025 BIDV. All rights reserved."
+            },
+            vi: {
+                pageTitle: "Yêu Cầu Tư Vấn",
+                nameLabel: "Họ và Tên",
+                mobileLabel: "Số Điện Thoại",
+                emailLabel: "Địa Chỉ Email",
+                submitBtn: "Gửi Yêu Cầu",
+                aboutLink: "Về BIDV",
+                privacyLink: "Chính Sách Bảo Mật",
+                contactLink: "Liên Hệ",
+                copyright: "© 2025 BIDV. Đã đăng ký bản quyền."
+            }
+        };
+
+        // Get DOM elements
+        const langToggle = document.getElementById('lang-toggle');
+        const pageTitle = document.getElementById('page-title');
+        const nameLabel = document.getElementById('name-label');
+        const mobileLabel = document.getElementById('mobile-label');
+        const emailLabel = document.getElementById('email-label');
+        const submitBtn = document.getElementById('submit-btn');
+        const aboutLink = document.getElementById('about-link');
+        const privacyLink = document.getElementById('privacy-link');
+        const contactLink = document.getElementById('contact-link');
+        const copyright = document.getElementById('copyright');
+
+        // Function to update language
+        function updateLanguage(isVietnamese) {
+            const lang = isVietnamese ? 'vi' : 'en';
+            document.documentElement.lang = lang;
+            
+            // Update text content
+            pageTitle.textContent = translations[lang].pageTitle;
+            nameLabel.textContent = translations[lang].nameLabel;
+            mobileLabel.textContent = translations[lang].mobileLabel;
+            emailLabel.textContent = translations[lang].emailLabel;
+            submitBtn.textContent = translations[lang].submitBtn;
+            aboutLink.textContent = translations[lang].aboutLink;
+            privacyLink.textContent = translations[lang].privacyLink;
+            contactLink.textContent = translations[lang].contactLink;
+            copyright.textContent = translations[lang].copyright;
+        }
+
+        // Language toggle event
+        langToggle.addEventListener('change', (e) => {
+            updateLanguage(e.target.checked);
+        });
+
+        // Form submission (prevent default for demo)
+        document.getElementById('consultation-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Form submitted successfully!');
+        });
+
+        // Initialize with English
+        updateLanguage(false);
+    </script>
+</body>
+</html>
