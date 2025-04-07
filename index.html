@@ -229,35 +229,53 @@
 <body>
     <header>
         <div class="header-container">
-            <img src="BIDV LOGO.png" alt="BIDV Logo" class="logo" id="bidv-logo">
+            <img src="BIDV LOGO.png" alt="BIDV Logo" class="logo bidv-logo">
             <div class="language-toggle">
-                <span class="lang-label" id="en-label">EN</span>
+                <span class="lang-label lang-en">EN</span>
                 <label class="toggle-switch">
-                    <input type="checkbox" id="lang-toggle">
+                    <input type="checkbox" class="lang-toggle">
                     <span class="slider"></span>
                 </label>
-                <span class="lang-label" id="vi-label">VI</span>
+                <span class="lang-label lang-vi">VI</span>
             </div>
         </div>
     </header>
     
     <main>
         <div class="card">
-            <h1 id="page-title">Request Consultation</h1>
-            <form id="consultation-form">
+            <h1 class="page-title" data-translate="pageTitle">Request Consultation</h1>
+            <form class="consultation-form" id="OnLineCaseForm" method="post" action="https://presales.businessbywire.com/appgold8demo/ProcessAnonymous/OnlineLeadCapture?x=s2rsuht9cnx3lyqqcnda6spl7l8592zqk4an9h9rpbfte9ey3639q7yzmbadtlkcgx75q73agz4nphmmqdxhavuwhsbgnb3q4ztcyp2sz7rcsst97d4a">
+                <input type="hidden" name="debug" value="1">
+                <input type="hidden" name="debugEmail" value="james@crmnext.com">
+                <input type=hidden name="SuccessReturnURL" value="https://businessnext-demo.github.io/bidv-thankyou-page/">
+                <input type=hidden name="FailureReturnURL" value="https://www.businessnext.com/error">
+                <select id="CaseSolutionCategory" name="CaseSolutionCategory" style="display: none;">
+                    <option value= "6">Query</option>
+                </select>
+                <select id="Layout" name="Layout" style="display: none;">
+                    <option value= "102966">Customer Service Request</option>
+                </select>
+                <select id="StatusCode" name="StatusCode" style="display: none;">
+                    <option value= "101087">Query</option>
+                </select>
+
                 <div class="form-group">
-                    <label for="name" id="name-label">Full Name</label>
-                    <input type="text" id="name" name="name" required>
+                    <label for="name" class="form-label" data-translate="nameLabel">Full Name</label>
+                    <input type="text" id="Company" name="Company" required>
                 </div>
                 <div class="form-group">
-                    <label for="mobile" id="mobile-label">Mobile Number</label>
-                    <input type="tel" id="mobile" name="mobile" required>
+                    <label for="mobile" class="form-label" data-translate="mobileLabel">Mobile Number</label>
+                    <input type="text" id="cust_6645" name="cust_6645" value="" required>
                 </div>
                 <div class="form-group">
-                    <label for="email" id="email-label">Email Address</label>
-                    <input type="email" id="email" name="email" required>
+                    <label for="email" class="form-label" data-translate="emailLabel">Email Address</label>
+                    <input type="text" id="cust_2955" name="cust_2955" value="" required>
                 </div>
-                <button type="submit" id="submit-btn">Submit Request</button>
+                <div class="form-group">
+                    <label for="email" class="form-label" data-translate="subjectLabel">Subject for Consultation</label>
+                    <input input type="text" id="Subject" name="Subject" required>
+                </div>
+                <button type="submit" name="submit" id="submit" value="Submit" onclick="return IsValidForm();" class="submit-btn" data-translate="submitBtn">Submit Request</button>
             </form>
         </div>
     </main>
@@ -265,13 +283,18 @@
     <footer>
         <div class="footer-container">
             <div class="footer-links">
-                <a href="#" id="about-link">About BIDV</a>
-                <a href="#" id="privacy-link">Privacy Policy</a>
-                <a href="#" id="contact-link">Contact Us</a>
+                <a href="#" class="footer-link" data-translate="aboutLink">About BIDV</a>
+                <a href="#" class="footer-link" data-translate="privacyLink">Privacy Policy</a>
+                <a href="#" class="footer-link" data-translate="contactLink">Contact Us</a>
             </div>
-            <div class="copyright" id="copyright">© 2025 BIDV. All rights reserved. This website is a demonstration and for illustrative purposes only.</div>
+            <div class="copyright" data-translate="copyright">© 2025 BIDV. All rights reserved. This website is a demonstration and for illustrative purposes only.</div>
         </div>
     </footer>
+
+    <script nonce='d5b593e808c54eb089175d9f131b7f15'>
+        function UpdateProductName() { var prodObj = document.getElementById('Product'); var prodNameObj = document.getElementById('ProductName'); prodNameObj.value = prodObj.options[prodObj.selectedIndex].text; } function UpdateTerritoryName() { var terrObj = document.getElementById('Territory'); var terrNameObj = document.getElementById('TerritoryName'); terrNameObj.value = terrObj.options[terrObj.selectedIndex].text; } 
+        function IsValidForm() { var errMessage = ''; if(document.getElementById('Subject') != null) { if (document.getElementById('Subject').value == '') { errMessage = 'Enter Subject.\n'; } } else { errMessage = 'Subject Field is missing.\n'; } if(document.getElementById('Company') != null) { if (document.getElementById	('Company').value == '') { errMessage += 'Enter Company.\n'; } } else { errMessage += 'Company Field is missing.\n'; } if ( errMessage != '' ){ alert(errMessage); return false; } return true; }
+    </script>
 
     <script>
         // Language translations
@@ -285,7 +308,8 @@
                 aboutLink: "About BIDV",
                 privacyLink: "Privacy Policy",
                 contactLink: "Contact Us",
-                copyright: "© 2025 BIDV. All rights reserved. This website is a demonstration and for illustrative purposes only."
+                copyright: "© 2025 BIDV. All rights reserved. This website is a demonstration and for illustrative purposes only.",
+                subjectLabel: "Subject for Consultation"
             },
             vi: {
                 pageTitle: "Yêu Cầu Tư Vấn",
@@ -296,50 +320,35 @@
                 aboutLink: "Về BIDV",
                 privacyLink: "Chính Sách Bảo Mật",
                 contactLink: "Liên Hệ",
-                copyright: "© 2025 BIDV. Đã đăng ký bản quyền. Trang web này chỉ là bản trình diễn và dùng cho mục đích minh họa."
+                copyright: "© 2025 BIDV. Đã đăng ký bản quyền. Trang web này chỉ là bản trình diễn và dùng cho mục đích minh họa.",
+                subjectLabel: "Chủ đề cần tư vấn"
             }
         };
-
-        // Get DOM elements
-        const langToggle = document.getElementById('lang-toggle');
-        const pageTitle = document.getElementById('page-title');
-        const nameLabel = document.getElementById('name-label');
-        const mobileLabel = document.getElementById('mobile-label');
-        const emailLabel = document.getElementById('email-label');
-        const submitBtn = document.getElementById('submit-btn');
-        const aboutLink = document.getElementById('about-link');
-        const privacyLink = document.getElementById('privacy-link');
-        const contactLink = document.getElementById('contact-link');
-        const copyright = document.getElementById('copyright');
 
         // Function to update language
         function updateLanguage(isVietnamese) {
             const lang = isVietnamese ? 'vi' : 'en';
             document.documentElement.lang = lang;
             
-            // Update text content
-            pageTitle.textContent = translations[lang].pageTitle;
-            nameLabel.textContent = translations[lang].nameLabel;
-            mobileLabel.textContent = translations[lang].mobileLabel;
-            emailLabel.textContent = translations[lang].emailLabel;
-            submitBtn.textContent = translations[lang].submitBtn;
-            aboutLink.textContent = translations[lang].aboutLink;
-            privacyLink.textContent = translations[lang].privacyLink;
-            contactLink.textContent = translations[lang].contactLink;
-            copyright.textContent = translations[lang].copyright;
+            // Update all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
         }
 
         // Language toggle event
-        langToggle.addEventListener('change', (e) => {
+        document.querySelector('.lang-toggle').addEventListener('change', (e) => {
             updateLanguage(e.target.checked);
         });
 
         // Form submission (prevent default for demo)
-        document.getElementById('consultation-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Form submitted successfully!');
-        });
-
+      // document.querySelector('.consultation-form').addEventListener('submit', (e) => {
+       //     e.preventDefault();
+       //     alert('Form submitted successfully!'); 
+      //  }); 
         // Initialize with English
         updateLanguage(false);
     </script>
