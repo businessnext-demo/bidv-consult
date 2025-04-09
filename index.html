@@ -137,6 +137,20 @@
             flex-direction: column;
             gap: 0.5rem;
         }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--bidv-blue);
+            box-shadow: 0 0 0 2px rgba(0,78,158,0.2);
+        }
         
         label {
             font-weight: 500;
@@ -272,6 +286,15 @@
                     <input type="text" id="cust_2955" name="cust_2955" value="" required>
                 </div>
                 <div class="form-group">
+                    <label for="Product" class="form-label" data-translate="productLabel">Product</label>
+                    <select id="Product" name="Product" onchange="UpdateProductName();">
+                        <option value="" selected disabled>Select a product</option>
+                        <option value= "1000407">Visa Infinite Card (VN)</option>
+                        <option value= "1000408">Visa Cashback 360</option>
+                        <option value= "1000406">Visa Cashback Online</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="email" class="form-label" data-translate="subjectLabel">Subject for Consultation</label>
                     <input input type="text" id="Subject" name="Subject" required>
                 </div>
@@ -309,7 +332,8 @@
                 privacyLink: "Privacy Policy",
                 contactLink: "Contact Us",
                 copyright: "© 2025 BIDV. All rights reserved. This website is a demonstration and for illustrative purposes only.",
-                subjectLabel: "Subject for Consultation"
+                subjectLabel: "Subject for Consultation",
+                productLabel: "Product"
             },
             vi: {
                 pageTitle: "Yêu Cầu Tư Vấn",
@@ -321,7 +345,8 @@
                 privacyLink: "Chính Sách Bảo Mật",
                 contactLink: "Liên Hệ",
                 copyright: "© 2025 BIDV. Đã đăng ký bản quyền. Trang web này chỉ là bản trình diễn và dùng cho mục đích minh họa.",
-                subjectLabel: "Chủ đề cần tư vấn"
+                subjectLabel: "Chủ đề cần tư vấn",
+                productLabel: "Sản Phẩm"
             }
         };
 
